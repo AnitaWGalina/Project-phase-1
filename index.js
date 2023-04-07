@@ -98,7 +98,21 @@
 //     changes.append(card);
 //   });
 // }
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "01fa9544c8msh08b8a0d883a4ebdp1ff8a8jsne3e68d563a72",
+    "X-RapidAPI-Host": "real-time-climate-index.p.rapidapi.com",
+  },
+};
 
+fetch(
+  "https://real-time-climate-index.p.rapidapi.com/api/climate-data",
+  options
+)
+  .then((response) => response.json())
+  .then((response) => console.log(response))
+  .catch((err) => console.error(err));
 // Get the HTML elements
 const select = document.querySelector('#Information');
 const output = document.querySelector('.output');
@@ -108,9 +122,9 @@ const input = document.querySelector("#suggestion-input");
 
 // Define the API endpoints
 const endpoints = {
-  'EF': 'https://global-warming.org/api/ocean-warming-api',
-  'EF': 'https://global-warming.org/api/methane-api',
-  'NO': 'https://real-time-climate-index.p.rapidapi.com/api/climate-data'
+  EF: "https://global-warming.org/api/ocean-warming-api",
+  EF: "https://global-warming.org/api/methane-api",
+ BT: "https://real-time-climate-index.p.rapidapi.com/api/climate-data",
 };
 
 // Define a function to fetch and display data
