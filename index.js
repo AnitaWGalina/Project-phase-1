@@ -72,7 +72,7 @@ async function getWhatWillHappenIfWeDoNotTakeAction() {
     options
   )
     .then((response) => response.json())
-    //.then(data => console.log(data))
+    .then(data => console.log(data))
     .then(renderAction)
     .catch((err) => console.error(err));
 }
