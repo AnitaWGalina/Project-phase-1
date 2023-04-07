@@ -13,7 +13,7 @@ JSON
 
 
 ### DELIVERABLES
-1.Select the type of information the user would like to receive on climate change.
+1.Provide a selection from which the user can select  the type of information they would like to receive in regard to climate change.
 2.Give the user the option to suggest  what can be done to combat the effects of climate change.
 3.Provide information on climate change.
 
