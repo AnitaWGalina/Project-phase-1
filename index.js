@@ -133,5 +133,11 @@ document.querySelector("#search-button").addEventListener("click", () => {
     fetchData(endpoints[option]);
   } else {
     output.innerText = "Please select an option.";
-  }
+  } 
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault(); // prevent the default form submission
+    output.innerText = `Your suggestion: ${input.value}`;
+    input.value = ""; // clear the input field
+  });
 });
