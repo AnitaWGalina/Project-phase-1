@@ -99,18 +99,18 @@
 //   });
 // }
 
-
-const select = document.querySelector("#Information");
-const output = document.querySelector(".output");
-const cards = document.querySelectorAll(".card");
+// Get the HTML elements
+const select = document.querySelector('#Information');
+const output = document.querySelector('.output');
+const cards = document.querySelectorAll('.cards');
 const form = document.querySelector("#suggestion-form");
 const input = document.querySelector("#suggestion-input");
 
 // Define the API endpoints
 const endpoints = {
-  EF: "https://global-warming.org/api/ocean-warming-api",
-  MF: "https://global-warming.org/api/methane-api",
-  NO: "https://real-time-climate-index.p.rapidapi.com/api/climate-data",
+  'EF': 'https://global-warming.org/api/ocean-warming-api',
+  'EF': 'https://global-warming.org/api/methane-api',
+  'NO': 'https://real-time-climate-index.p.rapidapi.com/api/climate-data'
 };
 
 // Define a function to fetch and display data
@@ -118,30 +118,27 @@ async function fetchData(endpoint) {
   try {
     const response = await fetch(endpoint);
     const data = await response.json();
-    // Find the card corresponding to the selected option
-    const option = select.value;
-    const card = document.querySelector(`.card.${option}`);
-    // Display the data in the card
-    card.innerHTML = JSON.stringify(data);
+    // Display the data in the cards
+    cards.forEach(card => card.innerHTML = JSON.stringify(data));
   } catch (error) {
     console.error(error);
   }
 }
 
 // Add an event listener to the search button
-document.querySelector("#search-button").addEventListener("click", () => {
+document.querySelector('#search-button').addEventListener('click', () => {
   const option = select.value;
   if (option) {
     output.innerText = `Showing ${option} information...`;
     fetchData(endpoints[option]);
   } else {
-    output.innerText = "Please select an option.";
+    output.innerText = 'Please select an option.';
   }
 });
 
 // Add an event listener to the suggestion form
 form.addEventListener("submit", (event) => {
   event.preventDefault(); // prevent the default form submission
-  output.innerText = `Your suggestion: ${input.value}`;
+  output.innerText = `Your suggestion :${input.value} has been received!`;
   input.value = ""; // clear the input field
 });
