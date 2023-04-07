@@ -75,3 +75,48 @@ main {
     font-size: 1.1em;
     line-height: 1.5;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#suggestion-input {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+#suggestion-input:focus {
+    outline: none;
+    border: 1px solid #0099ff;
+}
+
+#suggestion-form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0099ff;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#suggestion-form button:hover {
+    background-color: #0077cc;
+}
+
+#suggestion-form button[type="reset"] {
+    background-color: #ccc;
+    color: #333;
+}
+
+#suggestion-form button[type="reset"]:hover {
+    background-color: #999;
+}
