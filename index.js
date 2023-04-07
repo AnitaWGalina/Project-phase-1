@@ -136,9 +136,3 @@ document.querySelector('#search-button').addEventListener('click', () => {
   }
 });
 
-// Add an event listener to the suggestion form
-form.addEventListener("submit", (event) => {
-  event.preventDefault(); // prevent the default form submission
-  output.innerText = `Your suggestion :${input.value} has been received!`;
-  input.value = ""; // clear the input field
-});
