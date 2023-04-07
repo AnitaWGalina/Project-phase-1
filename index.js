@@ -5,17 +5,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchButton.addEventListener("click", () => {
     // get the value from the dropdown
-    const value = "CC";
+    const value = document.querySelector("#Information").value;
+
+    console.log(value);
 
     // create an if statement to check if the value is equal to something
     if (value === "EF") {
       getEffectsOfClimateChange();
     } else if (value === "NO") {
       getWhatWillHappenIfWeDoNotTakeAction();
-    } else if (value=== "CC") {
-      getWhatCanBeDoneToCombatTheEffects();
     } else {
-      return "Please select an option";
+      return ("Please select an option");
     }
   });
 });
@@ -29,8 +29,9 @@ function getOption() {
 function onLoad() {
   getEffectsOfClimateChange();
   getWhatWillHappenIfWeDoNotTakeAction();
-  getWhatCanBeDoneToCombatTheEffects();
+
 }
+onLoad();
 
 async function getEffectsOfClimateChange() {
   const options = {
@@ -47,16 +48,15 @@ async function getEffectsOfClimateChange() {
     .then((response) => console.log(response))
     .catch((err) => console.error(err));
 
-    fetch(
-      "https://global-warming.org/api/methane-api",
+  fetch(
+    "https://global-warming.org/api/methane-api",
 
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-
-}
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
+};
 
 async function getWhatWillHappenIfWeDoNotTakeAction() {
   const options = {
@@ -99,17 +99,39 @@ function renderAction(action) {
   });
 }
 
-async function getWhatCanBeDoneToCombatTheEffects() {
-   const options = {
-     method: "GET",
-     headers: {
-       "X-RapidAPI-Key": "01fa9544c8msh08b8a0d883a4ebdp1ff8a8jsne3e68d563a72",
-       "X-RapidAPI-Host": "climate-change-news-scraper1.p.rapidapi.com",
-     },
-   };
 
-   fetch("https://climate-change-news-scraper1.p.rapidapi.com/news", options)
-     .then((response) => response.json())
-     .then((response) => console.log(response))
-     .catch((err) => console.error(err));
+
+// Get the HTML elements
+const select = document.querySelector("#Information");
+const output = document.querySelector(".output");
+const cards = document.querySelectorAll(".cards");
+
+// Define the API endpoints
+const endpoints = {
+  EF: "https://global-warming.org/api/ocean-warming-api",
+  EF: "https://global-warming.org/api/methane-api",
+  NO: "https://real-time-climate-index.p.rapidapi.com/api/climate-data",
+};
+
+// Define a function to fetch and display data
+async function fetchData(endpoint) {
+  try {
+    const response = await fetch(endpoint);
+    const data = await response.json();
+    // Display the data in the cards
+    cards.forEach((card) => (card.innerHTML = JSON.stringify(data)));
+  } catch (error) {
+    console.error(error);
+  }
 }
+
+// Add an event listener to the search button
+document.querySelector("#search-button").addEventListener("click", () => {
+  const option = select.value;
+  if (option) {
+    output.innerText = `Showing ${option} information...`;
+    fetchData(endpoints[option]);
+  } else {
+    output.innerText = "Please select an option.";
+  }
+});
