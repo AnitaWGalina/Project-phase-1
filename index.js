@@ -100,8 +100,6 @@
 // }
 
 
-
-// Get the HTML elements
 const select = document.querySelector("#Information");
 const output = document.querySelector(".output");
 const cards = document.querySelectorAll(".card");
@@ -120,8 +118,11 @@ async function fetchData(endpoint) {
   try {
     const response = await fetch(endpoint);
     const data = await response.json();
-    // Display the data in the cards
-    cards.forEach((card) => (card.innerHTML = JSON.stringify(data)));
+    // Find the card corresponding to the selected option
+    const option = select.value;
+    const card = document.querySelector(`.card.${option}`);
+    // Display the data in the card
+    card.innerHTML = JSON.stringify(data);
   } catch (error) {
     console.error(error);
   }
