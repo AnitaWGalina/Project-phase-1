@@ -104,12 +104,14 @@
 // Get the HTML elements
 const select = document.querySelector("#Information");
 const output = document.querySelector(".output");
-const cards = document.querySelectorAll(".cards");
+const cards = document.querySelectorAll(".card");
+const form = document.querySelector("#suggestion-form");
+const input = document.querySelector("#suggestion-input");
 
 // Define the API endpoints
 const endpoints = {
   EF: "https://global-warming.org/api/ocean-warming-api",
-  EF: "https://global-warming.org/api/methane-api",
+  MF: "https://global-warming.org/api/methane-api",
   NO: "https://real-time-climate-index.p.rapidapi.com/api/climate-data",
 };
 
@@ -133,11 +135,12 @@ document.querySelector("#search-button").addEventListener("click", () => {
     fetchData(endpoints[option]);
   } else {
     output.innerText = "Please select an option.";
-  } 
+  }
+});
 
-  form.addEventListener("submit", (event) => {
-    event.preventDefault(); // prevent the default form submission
-    output.innerText = `Your suggestion: ${input.value}`;
-    input.value = ""; // clear the input field
-  });
+// Add an event listener to the suggestion form
+form.addEventListener("submit", (event) => {
+  event.preventDefault(); // prevent the default form submission
+  output.innerText = `Your suggestion: ${input.value}`;
+  input.value = ""; // clear the input field
 });
