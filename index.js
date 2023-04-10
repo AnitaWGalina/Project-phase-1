@@ -122,9 +122,9 @@ const input = document.querySelector("#suggestion-input");
 
 // Define the API endpoints
 const endpoints = {
-  EF: "https://global-warming.org/api/ocean-warming-api",
+  CC: "https://global-warming.org/api/ocean-warming-api",
   EF: "https://global-warming.org/api/methane-api",
- BT: "https://real-time-climate-index.p.rapidapi.com/api/climate-data",
+  BT: "https://real-time-climate-index.p.rapidapi.com/api/climate-data",
 };
 
 // Define a function to fetch and display data
